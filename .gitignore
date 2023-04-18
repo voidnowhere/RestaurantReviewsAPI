@@ -164,5 +164,8 @@ cython_debug/
 .vscode/
 
 # Django migrations
-!migrations/__init__.py
 migrations/
+!migrations/__init__.py
+
+# Restaurants images
+static/images/restaurants
