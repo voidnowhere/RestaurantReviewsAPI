@@ -1,15 +1,16 @@
 from rest_framework import serializers
-from .models import Restaurant
+from .models import *
 
 
 class RestaurantSerializer(serializers.ModelSerializer):
-    cuisines = serializers.CharField(max_length=100)
-    price_range = serializers.CharField(max_length=100)
-    meals = serializers.CharField(max_length=100)
-    adresse = serializers.CharField(max_length=100)
-    phone_number = serializers.CharField(max_length=100)
-    website = serializers.CharField(max_length=100)
-
+    imagesA = serializers.CharField(max_length=200)
+    imagesI = serializers.CharField(max_length=200)
+    cuisines = serializers.CharField(max_length=200)
+    nom = serializers.CharField(max_length=200)
+    prix = serializers.CharField(max_length=200)
+    phone = serializers.CharField(max_length=200)
+    web = serializers.CharField(max_length=200)
+    adresse = serializers.CharField(max_length=200)
     class Meta:
         model = Restaurant
-        fields = ('cuisines', 'price_range', 'meals', 'adresse', 'phone_number', 'website',)
+        fields = ('imagesA', 'imagesI', 'cuisines','nom','prix','phone','web','adresse','menu',)
