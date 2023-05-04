@@ -30,8 +30,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     CUSTOMER = 'C'
     REVIEWER = 'R'
     TYPES = [
-        (CUSTOMER, 'Player'),
-        (REVIEWER, 'Owner'),
+        (CUSTOMER, 'Customer'),
+        (REVIEWER, 'Reviewer'),
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
