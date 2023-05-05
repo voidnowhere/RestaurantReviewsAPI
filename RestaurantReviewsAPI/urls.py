@@ -28,6 +28,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/blacklist/', TokenBlacklistView.as_view(), name='token_blacklist'),
     path('api/users/', include('users.urls')),
+    path('api/reviewer/', include('reviewers.urls')),
     path('api/restaurants/', include('restaurants.urls')),
     path('scrapping/', include('scrapping.urls')),
 ]
