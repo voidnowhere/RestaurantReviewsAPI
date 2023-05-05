@@ -4,28 +4,29 @@ from rest_framework.exceptions import NotFound
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
-from restaurants.models import Restaurants
-from restaurants.serializers import RestaurantsVerificationSerializerListAPIView, RestaurantsSerializerRetrieveAPIView
+from restaurants.models import Restaurant
+from restaurants.serializers import RestaurantsVerificationListAPIViewSerializer, \
+    RestaurantVerificationRetrieveAPIViewSerializer
 from users.permissions import IsReviewer
 
 
 class RestaurantsVerificationListAPIView(ListAPIView):
-    queryset = Restaurants.objects.all()
+    queryset = Restaurant.objects.all()
     permission_classes = [IsReviewer]
-    serializer_class = RestaurantsVerificationSerializerListAPIView
+    serializer_class = RestaurantsVerificationListAPIViewSerializer
 
 
 class RestaurantRetrieveAPIView(RetrieveAPIView):
-    serializer_class = RestaurantsSerializerRetrieveAPIView
-    queryset = Restaurants.objects.all()
+    serializer_class = RestaurantVerificationRetrieveAPIViewSerializer
+    queryset = Restaurant.objects.all()
     permission_classes = [IsReviewer]
-    lookup_field = 'id'
+    lookup_field = 'pk'
 
 
 @api_view(['PATCH'])
 @permission_classes([IsReviewer])
-def restaurant_verify(request, id):
-    restaurant = Restaurants.objects.filter(id=id).first()
+def restaurant_verify(request, pk):
+    restaurant = Restaurant.objects.filter(pk=pk).first()
     if not restaurant:
         return NotFound
     restaurant.is_verified = not restaurant.is_verified

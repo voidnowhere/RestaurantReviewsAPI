@@ -4,6 +4,6 @@ from restaurants.views import RestaurantsVerificationListAPIView, RestaurantRetr
 
 urlpatterns = [
     path('verification/', RestaurantsVerificationListAPIView.as_view()),
-    path('verification/<int:id>/', RestaurantRetrieveAPIView.as_view()),
-    path('verification/<int:id>/verify', restaurant_verify),
+    path('verification/<int:pk>/', RestaurantRetrieveAPIView.as_view()),
+    path('verification/<int:pk>/verify', restaurant_verify),
 ]

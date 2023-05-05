@@ -1,16 +1,15 @@
 from rest_framework import serializers
 
-from restaurants.models import Restaurants
+from restaurants.models import Restaurant
 
 
-class RestaurantsVerificationSerializerListAPIView(serializers.ModelSerializer):
+class RestaurantsVerificationListAPIViewSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Restaurants
-        fields = ['id', 'name', 'image', 'latitude', 'longitude', 'is_verified']
+        model = Restaurant
+        fields = ['id', 'name', 'city', 'image', 'is_verified']
 
 
-class RestaurantsSerializerRetrieveAPIView(serializers.ModelSerializer):
+class RestaurantVerificationRetrieveAPIViewSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Restaurants
-        fields = ['name', 'cuisines', 'price_range', 'meals', 'address', 'latitude', 'longitude',
-                  'phone_number', 'website']
+        model = Restaurant
+        fields = ['name', 'cuisines', 'description', 'city', 'address', 'phone_number', 'website']

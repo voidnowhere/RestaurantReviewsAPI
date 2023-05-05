@@ -29,6 +29,7 @@ urlpatterns = [
     path('api/token/blacklist/', TokenBlacklistView.as_view(), name='token_blacklist'),
     path('api/users/', include('users.urls')),
     path('api/restaurants/', include('restaurants.urls')),
+    path('scrapping/', include('scrapping.urls')),
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
