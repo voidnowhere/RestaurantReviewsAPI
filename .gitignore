@@ -167,5 +167,5 @@ cython_debug/
 migrations/
 !migrations/__init__.py
 
-# Restaurants images
-static/images/restaurants
+# Media images
+media/
