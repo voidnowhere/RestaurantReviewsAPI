@@ -14,3 +14,6 @@ class Restaurant(models.Model):
     menu = models.TextField()
 
 
+class Comment(models.Model):
+    comments = models.TextField()
+    restaurants = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='comments')
