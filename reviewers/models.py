@@ -29,7 +29,7 @@ class Restaurant(models.Model):
 
 class Rating(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
     stars = models.SmallIntegerField()
     comment = models.CharField(max_length=2000)
     when = models.DateTimeField(auto_now_add=True)

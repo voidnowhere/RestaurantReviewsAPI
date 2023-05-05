@@ -1,23 +1,32 @@
 from rest_framework import serializers
 
 from .models import *
+from users.models import User
 
 
-class CustomerSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Customer
-        fields = [ 'name']
-
-
-class RatingSerializer(serializers.ModelSerializer):
-    customer = CustomerSerializer()
-
-    class Meta:
-        model = Rating
-        fields = ['id', 'restaurant', 'customer', 'stars', 'comment', 'when', 'is_verified']
+        model = User
+        fields = ['email']
 
 
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ['id', 'cuisines', 'price_range', 'meals', 'address', 'latitude', 'longitude', 'phone_number', 'website']
+        fields = ['id', 'cuisines', 'price_range', 'meals', 'address', 'latitude', 'longitude', 'phone_number',
+                  'website']
+
+
+class RestaurantSerializerId(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ['id','cuisines']
+
+
+class RatingSerializer(serializers.ModelSerializer):
+    customer = UserSerializer()
+    restaurant = RestaurantSerializerId()
+
+    class Meta:
+        model = Rating
+        fields = ['id', 'restaurant', 'customer', 'stars', 'comment', 'when', 'is_verified']
