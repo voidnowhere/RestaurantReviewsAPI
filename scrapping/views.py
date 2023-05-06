@@ -72,7 +72,7 @@ class ScrapView(View):
                             website=restaurant_website_url,
                         )
                         restaurant.image.save(
-                            name=restaurant.name,
+                            name=restaurant_img_url.split('/')[-1],
                             content=ContentFile(requests.get(restaurant_img_url).content)
                         )
         return render(request, 'index.html', {'urls': urls})
