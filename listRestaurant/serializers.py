@@ -2,6 +2,12 @@ from rest_framework import serializers
 from .models import *
 
 
+class RatestarSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ratestar
+        fields = ('rate',)
+
+
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
@@ -18,7 +24,8 @@ class RestaurantSerializer(serializers.ModelSerializer):
     web = serializers.CharField(max_length=200)
     adresse = serializers.CharField(max_length=200)
     comments = CommentSerializer(many=True, read_only=True)
+    rate = RatestarSerializer(many=True, read_only=True)
 
     class Meta:
         model = Restaurant
-        fields = ('imagesA', 'imagesI', 'cuisines', 'nom', 'prix', 'phone', 'web', 'adresse', 'menu', 'comments',)
+        fields = ('imagesA', 'imagesI', 'cuisines', 'nom', 'prix', 'phone', 'web', 'adresse', 'menu', 'comments', 'rate',)

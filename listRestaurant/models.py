@@ -17,3 +17,8 @@ class Restaurant(models.Model):
 class Comment(models.Model):
     comments = models.TextField()
     restaurants = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='comments')
+
+
+class Ratestar(models.Model):
+    rate = models.PositiveSmallIntegerField(default=0)
+    restaurants = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='rate')

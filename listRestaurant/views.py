@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 import requests
 from django.shortcuts import get_object_or_404
 
+
 # Create your views here.
 
 class RestaurantView(ListCreateAPIView):
@@ -95,6 +96,27 @@ def get_comment(request, pk):
 def create_comment(request, pk):
     restaurants = get_object_or_404(Restaurant, pk=pk)
     serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save(restaurants=restaurants)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def get_rate(request, pk):
+    try:
+        restaurant = Restaurant.objects.prefetch_related('rate').filter(pk=pk).first()
+    except Restaurant.DoesNotExist:
+        return Response({'message': 'Restaurant not found.'}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = RatestarSerializer(restaurant)
+    return Response(serializer.data)
+
+
+@api_view(['POST'])
+def create_rate(request, pk):
+    restaurants = get_object_or_404(Restaurant, pk=pk)
+    serializer = RatestarSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save(restaurants=restaurants)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
