@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'reviewers',
     'restaurants',
     'scrapping',
+    'ratings',
 ]
 
 MIDDLEWARE = [

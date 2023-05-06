@@ -1,9 +1,12 @@
-from .views import *
 from django.urls import path
 
-urlpatterns = [
-    path('ratings/<int:id>/', RatingListAPIView.as_view()),
-    path('restaurant/', RestaurantListAPIView.as_view()),
-    path('restaurant/<int:id>/ratings', update_rating_is_verified),
+from .views import RestaurantsListAPIView, RestaurantRetrieveAPIView, rating_verify, restaurant_verify, \
+    RestaurantWithRatingsRetrieveAPIView
 
+urlpatterns = [
+    path('restaurants/', RestaurantsListAPIView.as_view()),
+    path('restaurants/<int:id>/', RestaurantRetrieveAPIView.as_view()),
+    path('restaurants/<int:id>/verify', restaurant_verify),
+    path('restaurants/<int:id>/ratings/', RestaurantWithRatingsRetrieveAPIView.as_view()),
+    path('ratings/<int:id>/verify', rating_verify),
 ]
