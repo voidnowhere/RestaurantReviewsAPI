@@ -8,7 +8,7 @@ class Restaurant(models.Model):
     address = models.CharField(max_length=255)
     description = models.CharField(max_length=2500)
     city = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=13)
+    phone_number = models.CharField(max_length=20)
     website = models.CharField(max_length=100)
     is_verified = models.BooleanField(default=False)
 

@@ -6,8 +6,8 @@ from users.models import User
 
 
 class Rating(models.Model):
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='ratings')
-    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings')
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.PROTECT, related_name='ratings')
+    customer = models.ForeignKey(User, on_delete=models.PROTECT, related_name='ratings')
     stars = models.SmallIntegerField(validators=[MaxValueValidator(5), MinValueValidator(0)])
     comment = models.CharField(max_length=2000)
     created_at = models.DateTimeField(auto_now_add=True)

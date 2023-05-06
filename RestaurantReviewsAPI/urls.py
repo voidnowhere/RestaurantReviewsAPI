@@ -29,7 +29,8 @@ urlpatterns = [
     path('api/users/', include('users.urls')),
     path('api/reviewers/', include('reviewers.urls')),
     path('scrapping/', include('scrapping.urls')),
-    path('api/restaurant/', include('listRestaurant.urls')),
+    path('api/restaurants/', include('restaurants.urls')),
+    path('api/ratings/', include('ratings.urls')),
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
