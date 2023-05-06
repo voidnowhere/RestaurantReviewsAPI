@@ -7,19 +7,24 @@ from .serializers import RestaurantsListAPIViewSerializer, RestaurantRatingsList
 
 
 class RestaurantsListAPIView(ListAPIView):
-    queryset = Restaurant.objects.annotate(
-        rating=Avg('ratings__stars', filter=Q(ratings__is_verified=True))
-    ).filter(is_verified=True).all()
     serializer_class = RestaurantsListAPIViewSerializer
+
+    def get_queryset(self):
+        return Restaurant.objects.annotate(
+            rating=Avg('ratings__stars', filter=Q(ratings__is_verified=True))
+        ).filter(
+            is_verified=True,
+            name__contains=self.request.query_params.get('name', '')
+        ).order_by('-rating').all()
 
 
 class RestaurantWithRatingsRetrieveAPIView(RetrieveAPIView):
     serializer_class = RestaurantRatingsListAPIViewSerializer
     queryset = Restaurant.objects.prefetch_related(
         Prefetch('ratings', queryset=Rating.objects.filter(is_verified=True).order_by('-created_at'))
-    ).filter(
-        is_verified=True,
     ).annotate(
         rating=Avg('ratings__stars', filter=Q(ratings__is_verified=True)),
+    ).filter(
+        is_verified=True,
     ).all()
     lookup_field = 'id'

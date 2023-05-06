@@ -34,4 +34,5 @@ class RestaurantRatingsListAPIViewSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Restaurant
-        fields = ['id', 'name', 'city', 'rating', 'ratings', 'image']
+        fields = ['id', 'name', 'city', 'rating', 'ratings', 'image', 'address', 'description', 'phone_number',
+                  'website', 'cuisines']
