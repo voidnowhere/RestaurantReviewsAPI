@@ -1,4 +1,10 @@
-# Restaurant Reviews API
+# Restaurant Reviews API & [Restaurant Reviews WEB](https://github.com/voidnowhere/RestaurantReviewsWEB)
+
+## `Architecture`
+
+![architecture](https://user-images.githubusercontent.com/79842485/236669654-f579c87c-83f5-4655-948f-a0e437a426d6.png)
+
+<hr>
 
 ## `Clone repository`
 ```bash
